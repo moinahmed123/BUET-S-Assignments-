@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    unsigned long long bin_num, odd_bin = 0, even_bin = 0,num,n1=0,n2=0;
+    
+    scanf("%llu", &num); 
+
+    bin_num = 0;
+    int i,j;
+
+    for (i = 0; num != 0; i++) {
+        bin_num += pow(10,i) * (num % 2); 
+        num = num / 2; 
+    }
+    //printf("%llu\n",bin_num);
+    for (i = 0; bin_num != 0; i++) {
+        if (i % 2 == 0) {
+            even_bin += (bin_num % 10) *pow(10,i/2);
+        } else {
+            odd_bin += (bin_num % 10) *pow(10,(i-1)/2);
+        }
+        bin_num /= 10; 
+    }
+   
+    for(j=0;j<=(i+1)/2;j++){
+        n1=n1+(odd_bin%10)*pow(2,j);
+        odd_bin/=10;
+        n2=n2+(even_bin%10)*pow(2,j);
+        even_bin/=10;
+        
+    }
+    //printf("%llu %llu\n",n1,n2);
+    if(n1>n2)printf("%llu\n",n1);
+    else printf("%llu\n",n2);
+
+    //printf("%llu %llu\n", even_bin, odd_bin); 
+    return 0;
+}
